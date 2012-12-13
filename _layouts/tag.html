@@ -1,0 +1,25 @@
+---
+layout: default
+---
+{% capture prefix %}{{page.url | truncate: 12, ''}}{% endcapture %}
+{% capture tag %}{{ page.url | remove_first: prefix | remove: ".html"}}{% endcapture %}
+<h2>Tag: {{page.name}}</h2>
+<ul>
+{% if page.tag_url %}
+  <li>Additional Information : <a href="{{page.tag_url}}">{{page.tag_url}}</a><br/></li>
+{% endif %}
+</ul>
+{{content}}
+<table>
+  {% include job_list_header.html %}
+  <tbody>
+  {% for post in site.posts %}
+    {% for post_tag in post.tags | split: ',' %}
+      {% capture stripped_tag %}{{ post_tag | remove: ',' }}{% endcapture %}
+      {% if stripped_tag == tag %}
+        {% include job_list_row.html %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  </tbody>
+</table>
