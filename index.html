@@ -4,26 +4,10 @@ layout: default
 <h2>Python India Jobs</h2>
 
 <table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Company</th>
-      <th>Title</th>
-      <th>Category</th>
-      <th>Tags</th>
-      <th>Location</th>
-    </tr>
-  </thead>
+  {% include job_list_header.html %}
   <tbody>
     {% for post in site.posts %}
-    <tr>
-      <td>{{post.date | date: "%d %b %y"}}</td>
-      <td>{{post.company}}</td>
-      <td><a href="{{post.url}}">{{post.title | truncate: 64}}</a></td>
-      <td><a href="/categories/pages/{{post.category}}.html">{{post.category}}</a></td>
-      <td>{{post.tags}}</td>
-      <td>{{post.location}}</td>
-    </tr>
+    {% include job_list_row.html %}
     {% endfor %}
   </tbody>
 </table>

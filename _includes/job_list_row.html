@@ -1,0 +1,8 @@
+    <tr>
+      <td>{{post.date | date: "%d %b %y"}}</td>
+      <td>{{post.company}}</td>
+      <td><a href="{{post.url}}">{{post.title | truncate: 64}}</a></td>
+      <td><a href="/categories/pages/{{post.category}}.html">{{post.category}}</a></td>
+      <td>{{post.tags}}</td>
+      <td>{{post.location}}</td>
+    </tr>
