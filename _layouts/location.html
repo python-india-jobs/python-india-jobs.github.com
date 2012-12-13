@@ -1,0 +1,17 @@
+---
+layout: default
+---
+{% capture prefix %}{{page.url | truncate: 17, ''}}{% endcapture %}
+{% capture location %}{{ page.url | remove_first: prefix | remove: ".html"}}{% endcapture %}
+<h2>Location: {{page.name}}</h2>
+
+<table>
+  {% include job_list_header.html %}
+  <tbody>
+  {% for post in site.posts %}
+    {% if post.location == location %}
+    {% include job_list_row.html %}
+    {% endif %}
+  {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<h2>Locations</h2>
+{% for page in site.pages %}
+  {% capture prefix %}{{page.url | truncate: 17, ''}}{% endcapture %}
+  {% if prefix == "/locations/pages/" %}
+    {% capture location %}{{ page.url | remove_first: prefix | remove: ".html"}}{% endcapture %}
+    <li><a href="/locations/pages/{{location}}.html">{{page.name}}</a></li>
+  {% endif %}
+{% endfor %}
+
