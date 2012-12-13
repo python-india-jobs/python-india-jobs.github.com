@@ -1,0 +1,8 @@
+---
+layout: default
+---
+<h2>Categories</h2>
+{% for cat in site.categories %}
+<li><a href="/categories/pages/{{cat[0]}}.html">{{ cat[0] }}</a></li>
+{% endfor %}
+
