@@ -1,5 +1,5 @@
 ---
 layout: category
-category: programming
+name: Programming
 ---
 

@@ -2,7 +2,11 @@
 layout: default
 ---
 <h2>Categories</h2>
-{% for cat in site.categories %}
-<li><a href="/categories/pages/{{cat[0]}}.html">{{ cat[0] }}</a></li>
+{% for page in site.pages %}
+  {% capture prefix %}{{page.url | truncate: 18, ''}}{% endcapture %}
+  {% if prefix == "/categories/pages/" %}
+    {% capture category %}{{ page.url | remove_first: prefix | remove: ".html"}}{% endcapture %}
+    <li><a href="/categories/pages/{{category}}.html">{{page.name}}</a></li>
+  {% endif %}
 {% endfor %}
 

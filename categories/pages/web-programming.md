@@ -1,5 +1,5 @@
 ---
 layout: category
-category: web-programming
+name: Web Programming
 ---
 

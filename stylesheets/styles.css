@@ -155,6 +155,9 @@ header ul li + li + li {
   border-right: none;
   width: 79px;
 }
+.menubar li {
+  display: inline;
+}
 header ul a {
   line-height: 1;
   font-size: 11px;
