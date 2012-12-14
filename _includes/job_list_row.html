@@ -12,7 +12,8 @@
       {% capture post_date_in_year %}{{ post.date | date: '%j'}}{% endcapture %}
       {% capture post_date %}{{ post.date | date: '%y' | times: 366 | plus: post_date_in_year}}{% endcapture %}
       {% capture days_to_expiry %}{{ today | minus: post_date | minus: 30}}{% endcapture %}
-      {% if days_to_expiry < '0' %}
+      {% capture age %}{{ today | minus: post_date | plus: 1 }}{% endcapture %}
+      {% if age > '0' and days_to_expiry < '0' %}
         <tr>
           <td>{{post.date | date: "%d %b %y"}}</td>
           <td>{{post.company}}</td>
