@@ -1,16 +1,24 @@
 ---
 layout: default
 ---
-
+{% capture prefix %}{{page.url | truncate: 18, ''}}{% endcapture %}
+{% capture category %}{{ page.url | remove_first: prefix | remove: ".html"}}{% endcapture %}
 <h2>Category: {{page.category}}</h2>
-
+<ul>
+{% if page.category_url %}
+  <li>Additional Information : <a href="{{page.category_url}}">{{page.category_url}}</a><br/></li>
+{% endif %}
+</ul>
+{{content}}
 <table>
   {% include job_list_header.html %}
   <tbody>
   {% for post in site.posts %}
-    {% if post.category == page.category %}
+    {% if post.category == category %}
     {% include job_list_row.html %}
     {% endif %}
   {% endfor %}
+  </tbody>
+</table>
   </tbody>
 </table>
