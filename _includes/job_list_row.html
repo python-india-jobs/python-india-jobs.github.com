@@ -7,12 +7,19 @@
           <a href="/tags/pages/{{stripped_tag}}.html">{{stripped_tag}}</a>
         {% endfor %}
       {% endcapture %}
-      <tr>
-        <td>{{post.date | date: "%d %b %y"}}</td>
-        <td>{{post.company}}</td>
-        <td><a href="{{post.url}}">{{post.title | truncate: 64}}</a></td>
-        <td><a href="/categories/pages/{{post.category}}.html">{{post.category}}</a></td>
-        <td>{{tag_html}}</td>
-        <td><a href="/locations/pages/{{post.location}}.html">{{post.location}}</a></td>
-      </tr>
+      {% capture today_in_year %}{{ site.time | date: '%j'}}{% endcapture %}
+      {% capture today %}{{ site.time | date: '%y' | times: 366 | plus: today_in_year}}{% endcapture %}
+      {% capture post_date_in_year %}{{ post.date | date: '%j'}}{% endcapture %}
+      {% capture post_date %}{{ post.date | date: '%y' | times: 366 | plus: post_date_in_year}}{% endcapture %}
+      {% capture days_to_expiry %}{{ today | minus: post_date | minus: 30}}{% endcapture %}
+      {% if days_to_expiry < '0' %}
+        <tr>
+          <td>{{post.date | date: "%d %b %y"}}</td>
+          <td>{{post.company}}</td>
+          <td><a href="{{post.url}}">{{post.title | truncate: 64}}</a></td>
+          <td><a href="/categories/pages/{{post.category}}.html">{{post.category}}</a></td>
+          <td>{{tag_html}}</td>
+          <td><a href="/locations/pages/{{post.location}}.html">{{post.location}}</a></td>
+        </tr>
+      {% endif %}
     {% endunless %}
